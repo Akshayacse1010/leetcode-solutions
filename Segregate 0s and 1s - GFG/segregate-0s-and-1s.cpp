@@ -10,7 +10,20 @@ using namespace std;
 class Solution{   
 public:
     void segregate0and1(int a[], int n) {
-        sort(a,a+n);
+     int l =0,m=0;
+     int h=n-1;
+     for(int i=0;i<n;i++){
+         if(a[m]==0){
+             swap(a[m],a[l]);
+             m++;
+             l++;
+             
+         }
+         else{
+             swap(a[m],a[h]);
+             h--;
+         }
+     }
     }
 };
 
