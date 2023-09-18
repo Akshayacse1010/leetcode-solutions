@@ -29,8 +29,10 @@ class Solution {
         return false;
     }
     public boolean isSymmetric(TreeNode root) {
-        TreeNode t = root;
-       boolean r =  check(t,root);
+       if(root == null){
+           return true;
+       }
+       boolean r =  check(root.left,root.right);
        return r;
     }
 }
