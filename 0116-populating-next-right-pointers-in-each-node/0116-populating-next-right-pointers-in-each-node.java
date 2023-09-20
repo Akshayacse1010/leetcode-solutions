@@ -41,25 +41,25 @@ boolean f = false;
                 f = true;
             }
     while(!q.isEmpty()){
+      
+      Node n1 = q.pollLast();
       int size = q.size();
       Deque<Node> q2 = new ArrayDeque<>();
-        for(int i= 0; i< size-1;i++){
-            Node n1 = q.pollLast();
+        for(int i= 0; i< size ;i++){
             Node n2 = q.pollLast();
             n1.next = n2;
             n2.next = null;
             if(n1.left != null){
-                  q2.offerFirst(n1.left);
-                q2.offerFirst(n1.right);
+                  q.offerFirst(n1.left);
+                q.offerFirst(n1.right);
             }
               if(n2.left != null){
-                  q2.offerFirst(n2.left);
-                q2.offerFirst(n2.right);
+                  q.offerFirst(n2.left);
+                q.offerFirst(n2.right);
             }
-            q.offerLast(n2);
+            n1 = n2;
         }
-        Node w = q.pollLast();
-        q.addAll(q2);
+     
     }
 return root;
     }
