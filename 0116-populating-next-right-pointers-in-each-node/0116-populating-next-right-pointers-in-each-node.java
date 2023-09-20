@@ -26,15 +26,15 @@ class Solution {
         if(root == null){
             return root;
         }
-    Deque<Node> q = new ArrayDeque<>();
-    q.addLast(root);
+    Queue<Node> q = new LinkedList<>();
+    q.add(root);
             
 boolean f = false;
  if(!f){
-                Node n = q.pollLast();
+                Node n = q.poll();
                 if(n.left != null){
-                q.offerFirst(n.left);
-                q.offerFirst(n.right);
+                q.offer(n.left);
+                q.offer(n.right);
                 }
 
                 n.next = null;
@@ -42,20 +42,20 @@ boolean f = false;
             }
     while(!q.isEmpty()){
       
-      Node n1 = q.pollLast();
+      Node n1 = q.poll();
       int size = q.size();
-      Deque<Node> q2 = new ArrayDeque<>();
+     
         for(int i= 0; i< size ;i++){
-            Node n2 = q.pollLast();
+            Node n2 = q.poll();
             n1.next = n2;
             n2.next = null;
             if(n1.left != null){
-                  q.offerFirst(n1.left);
-                q.offerFirst(n1.right);
+                  q.offer(n1.left);
+                q.offer(n1.right);
             }
               if(n2.left != null){
-                  q.offerFirst(n2.left);
-                q.offerFirst(n2.right);
+                  q.offer(n2.left);
+                q.offer(n2.right);
             }
             n1 = n2;
         }
