@@ -1,0 +1,22 @@
+class Solution {
+    public int mySqrt(int x) {
+        long low = 0;
+        long high = x;
+        long temp = 0;
+
+        while (low <= high) {
+            long mid = low + (high - low) / 2; // Using long to avoid overflow
+
+            if (mid * mid == x) {
+                return (int) mid; // Cast back to int
+            } else if (mid * mid < x) {
+                temp = mid;
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        return (int) temp; // Cast back to int and indicate that no square root was found
+    }
+}
