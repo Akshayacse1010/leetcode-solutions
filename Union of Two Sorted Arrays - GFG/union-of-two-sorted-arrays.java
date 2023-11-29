@@ -54,46 +54,34 @@ class Main
 class Solution {
     // Function to return a list containing the union of the two arrays.
     public static ArrayList<Integer> findUnion(int arr1[], int arr2[], int n, int m) {
-        ArrayList<Integer> ar = new ArrayList<>();
-        int i = 0, j = 0;
-
-        while (i < n && j < m) {
-            if (arr1[i] < arr2[j]) {
-                if (ar.isEmpty() || ar.get(ar.size() - 1) != arr1[i]) {
-                    ar.add(arr1[i]);
-                }
-                i++;
-            } else if (arr1[i] > arr2[j]) {
-                if (ar.isEmpty() || ar.get(ar.size() - 1) != arr2[j]) {
-                    ar.add(arr2[j]);
-                }
-                j++;
-            } else {
-                // Handling case when arr1[i] == arr2[j]
-                if (ar.isEmpty() || ar.get(ar.size() - 1) != arr1[i]) {
-                    ar.add(arr1[i]);
-                }
-                i++;
-                j++;
-            }
-        }
-
-        // Adding remaining elements from arr1 and arr2
-        while (i < n) {
-            if (ar.isEmpty() || ar.get(ar.size() - 1) != arr1[i]) {
-                ar.add(arr1[i]);
-            }
-            i++;
-        }
-
-        while (j < m) {
-            if (ar.isEmpty() || ar.get(ar.size() - 1) != arr2[j]) {
-                ar.add(arr2[j]);
-            }
-            j++;
-        }
-
-        return ar;
+          int i = 0, j = 0; // pointers
+  ArrayList<Integer > Union=new ArrayList<>(); // Uninon vector
+  while (i < n && j < m) {
+    if (arr1[i] <= arr2[j]) // Case 1 and 2
+    {
+      if (Union.size() == 0 || Union.get(Union.size()-1) != arr1[i])
+        Union.add(arr1[i]);
+      i++;
+    } else // case 3
+    {
+      if (Union.size() == 0 || Union.get(Union.size()-1) != arr2[j])
+        Union.add(arr2[j]);
+      j++;
+    }
+  }
+  while (i < n) // IF any element left in arr1
+  {
+    if (Union.get(Union.size()-1) != arr1[i])
+      Union.add(arr1[i]);
+    i++;
+  }
+  while (j < m) // If any elements left in arr2
+  {
+    if (Union.get(Union.size()-1) != arr2[j])
+      Union.add(arr2[j]);
+    j++;
+  }
+  return Union;
     }
 }
 
